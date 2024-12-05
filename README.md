@@ -1,5 +1,5 @@
 # Ads_Navigation_Control 
-Kiểm soát điều hướng và iframe với nhiều phương thức nâng cao
+Chặn click vào quảng cáo. Tuyệt vời nhất khi song kiếm cùng Ublock ((=
 
 # Hướng Dẫn:
 B1: Cài đặt extension Tampermonkey.
