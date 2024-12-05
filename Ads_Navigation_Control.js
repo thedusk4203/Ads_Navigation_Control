@@ -2,7 +2,7 @@
 // @name         Ads Navigation Control
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Kiểm soát điều hướng và iframe với nhiều phương thức nâng cao
+// @description  Chặn click và điều hướng của các ads
 // @author       thedusk4203
 // @match        *://*/*
 // @grant        none
@@ -11,73 +11,67 @@
 (function() {
     'use strict';
 
-    // Cấu hình whitelist
-    const CONFIG = {
-        // Danh sách domain được phép (whitelist)
-        allowedDomains: [
-            'example.com',
-            'subdomain.example.com',
-            // Thêm các domain khác vào đây
-        ],
+    // Thêm danh sách whitelist
+    const whitelist = [
+        'google.com',
+        'gmail.com',
+        'google.com.vn',
+        'bing.com',
+        'yahoo.com',
+        'baidu.com',
+        'duckduckgo.com',
+        'yandex.com',
+        'ask.com',
+        'ecosia.org',
+        'naver.com',
+        'sogou.com',
+        'wikipedia.org',
+        'github.com',
+        'stackoverflow.com',
+        'developer.mozilla.org',
+        'w3schools.com',
+        'khanacademy.org',
+        'coursera.org',
+        'edx.org',
+        'ocw.mit.edu',
+    ];
 
-        allowedPaths: {
-            'example.com': [
-                '/allowed-path',
-                '/another-path/*'
-            ],
-        },
-
-        // Cấu hình cho iframe
-        iframeWhitelist: [
-            'trusted-iframe-source.com',
-            // Thêm các domain được phép nhúng iframe
-        ]
-    };
-
-    // Hàm kiểm tra path với wildcard
-    function isPathAllowed(domain, path) {
-        const allowedPaths = CONFIG.allowedPaths[domain];
-        if (!allowedPaths) return true; // Nếu không có cấu hình path, cho phép tất cả
-
-        return allowedPaths.some(allowedPath => {
-            if (allowedPath.endsWith('/*')) {
-                const basePath = allowedPath.slice(0, -1);
-                return path.startsWith(basePath);
-            }
-            return path === allowedPath;
-        });
+    // Hàm kiểm tra domain có trong whitelist
+    function isWhitelisted(domain) {
+        return whitelist.some(allowed => domain.includes(allowed));
     }
 
-    // Hàm kiểm tra URL với whitelist
+    // Hàm kiểm tra URL
     function isAllowedNavigation(url) {
         try {
             const parsedUrl = new URL(url, window.location.href);
+            const currentOrigin = window.location.origin;
 
-            // Kiểm tra origin hiện tại
-            if (parsedUrl.origin === window.location.origin) return true;
+            // Nếu trang hiện tại trong whitelist, cho phép mọi điều hướng
+            if (isWhitelisted(window.location.hostname)) {
+                return true;
+            }
 
-            // Kiểm tra domain trong whitelist
-            const isAllowedDomain = CONFIG.allowedDomains.some(domain => {
-                return parsedUrl.hostname === domain || parsedUrl.hostname.endsWith('.' + domain);
-            });
-
-            if (!isAllowedDomain) return false;
-
-            // Kiểm tra path nếu được cấu hình
-            return isPathAllowed(parsedUrl.hostname, parsedUrl.pathname);
+            // Nếu không trong whitelist, chỉ cho phép điều hướng trong cùng origin
+            return parsedUrl.origin === currentOrigin;
         } catch (e) {
             console.error('Lỗi kiểm tra URL:', e);
             return false;
         }
     }
 
-    // Hàm kiểm tra iframe với whitelist riêng
+    // Hàm kiểm tra iframe
     function isAllowedIframe(url) {
         try {
             const parsedUrl = new URL(url);
-            return CONFIG.iframeWhitelist.some(domain =>
-                parsedUrl.hostname === domain || parsedUrl.hostname.endsWith('.' + domain)
-            );
+
+            // Nếu trang hiện tại trong whitelist, cho phép iframe từ mọi nguồn
+            if (isWhitelisted(window.location.hostname)) {
+                return true;
+            }
+
+            // Nếu không trong whitelist, chỉ cho phép iframe từ cùng origin
+            return parsedUrl.origin === window.location.origin;
         } catch (e) {
             console.error('Lỗi kiểm tra iframe URL:', e);
             return false;
@@ -165,6 +159,5 @@
         });
     }
 
-    // Khởi tạo
     setupIframeControl();
 })();
