@@ -6,7 +6,7 @@ B1: Cài đặt extension Tampermonkey.
 
 B2: Tạo Scrip mới.
 
-B3: Paste đoạn mã từ file Ads_Navigation_Control.txt vào rồi lưu file (Crtl + S).
+B3: Paste đoạn mã từ file Ads_Navigation_Control vào rồi lưu file (Crtl + S).
 
 B4: Done!!!
 
