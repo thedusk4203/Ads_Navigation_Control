@@ -27,6 +27,7 @@
         'sogou.com',
         'wikipedia.org',
         'github.com',
+        'facebook.com',
         'stackoverflow.com',
         'developer.mozilla.org',
         'w3schools.com',
