@@ -27,7 +27,7 @@ B6: Done!!!
 Với nhu cầu cá nhân là xem phim và đọc truyện trên desktop web nên mình viết ra scrip này. Mong mọi người cho mình xin ý kiến để cải thiện ạ.
 Love u all💋
 
-Cách hoạt động là scrip sẽ chỉ cho phép load những url có cùng origin. Nên nếu bạn muốn truy cập trang web khác thì phải chuột phải và chọn "Mở đường liên kết trong tab mới" nhé.
+Cách hoạt động là scrip sẽ chỉ cho phép load những url có cùng origin. Nên nếu bạn muốn truy cập trang web khác thì chuột phải và chọn "Mở đường liên kết trong tab mới" hoặc chọn Cho phép ở popup thông báo chặn nhé.
 
 Buy me a coffee! Thank you💋
 
