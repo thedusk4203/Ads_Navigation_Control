@@ -12,15 +12,21 @@ B2: Bật Dev mode trong extension manager.
 
   <img width="3200" height="1892" alt="ScreenShot00085" src="https://github.com/user-attachments/assets/6e54bb17-f821-425e-8513-c2b41b5e52e8" />
 
+
+
 B3: Tạo Scrip mới.
 
   <img width="594" height="859" alt="ScreenShot00083" src="https://github.com/user-attachments/assets/36110083-de65-4021-a3c8-861149718547" />
+
+
   
 B4: Paste đoạn mã từ file Ads_Navigation_Control vào.
   
 B5: Thêm tên trang muốn chặn rồi save lại (Ctrl + S)
 
   <img width="3200" height="1900" alt="ScreenShot00086" src="https://github.com/user-attachments/assets/835e71ce-5346-4607-b29d-28194e871b62" />
+
+
 
 B6: Done!!!
 
